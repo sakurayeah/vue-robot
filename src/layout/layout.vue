@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="layout-wrap">
+  <div class="layout-wrap">
+    <div class="title-bar">
       <div>{{title}}</div>
       <div>
         <router-link to="/">home</router-link>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 四级  -->
+    <!-- recommend  -->
     <recommend></recommend>
   </div>
 </template>

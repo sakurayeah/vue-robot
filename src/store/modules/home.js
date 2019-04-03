@@ -1,7 +1,6 @@
 import ajax from '../../common/ajax';
 
 const state = {
-  show: true,
   list: [],
 }
 
@@ -9,7 +8,7 @@ const getters = {};
 
 const actions = {
   async homeInit(context) {
-    const res = await ajax('init.json');
+    const res = await ajax('homeInit.json');
     context.commit('homeInit', res);
   }
 }

@@ -330,22 +330,27 @@ const chatPort = (opts) => {
 }
 
 
-// 四级
+// recommend
 const recommend = {
-  "pageSize": 8,
-  'list|3-10': [
+  "pageSize": 6,
+  // list: [],
+  'list|3-15': [
     {
       'id|+1': 1,
       'title': '@title(2, 4)',
     }
   ],
+  headline: 'recommend',
   "stat": "ok"
 }
 
+Mock.setup({
+  timeout: '100-500'
+})
 
 // 首页初始化接口
-Mock.mock('init.json', 'get', homeInit)
-// 四级
+Mock.mock('homeInit.json', 'get', homeInit)
+// 卡片：recommend
 Mock.mock('recommend.json', 'get', recommend)
 // 聊天页问答接口
 Mock.mock('chat.json', 'get', chatPort)

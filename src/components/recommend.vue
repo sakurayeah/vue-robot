@@ -1,28 +1,59 @@
 <template>
-  <div>
-    <!-- 四级  -->
-    <div
-      v-if="list.length > 0"
-      class="list"
-      v-for="item in list"
-      :key="item.id"
-    >
-      {{ item.title }}
-    </div>
-    <div v-else>
-      loading
-    </div>
+  <loading v-if="isLoading"></loading>
+  <!-- recommend  -->
+  <div v-else-if="list.length > 0" class="recommend-wrap">
+    <card-title 
+      :headline="headline" 
+      :btn="list.length > 6 && 'change'"
+      @btnClick="changePage"
+    ></card-title>
+    <div class="list" v-for="item in listGroup" :key="item.id">{{ item.title }}</div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+import CardTitle from "./cardTitle.vue";
+import Loading from "./loading.vue";
+import "./recommend.less";
+
 export default {
-  created: function(){
-    this.$store.dispatch('recommendStore/recommend')
+  data() {
+    return {
+      current: 1
+    };
   },
-  computed: mapState({
-    list: state => state.recommendStore.list
-  }),
+  created: function() {
+    this.$store.dispatch("recommendStore/recommend");
+  },
+  methods: {
+    changePage() {
+      const maxPage = Math.ceil(this.list.length / this.pageSize);
+      const current = this.current;
+      let newCurrent = 1;
+      if (current < maxPage) {
+        newCurrent = current + 1;
+      }
+      this.current = newCurrent;
+    }
+  },
+  computed: {
+    ...mapState({
+      list: state => state.recommendStore.list,
+      headline: state => state.recommendStore.headline,
+      pageSize: state => state.recommendStore.pageSize,
+      isLoading: state => state.recommendStore.isLoading,
+    }),
+    listGroup() {
+      return this.list.slice(
+        (this.current - 1) * this.pageSize,
+        this.current * this.pageSize
+      );
+    }
+  },
+  components: {
+    Loading,
+    CardTitle,
+  }
 };
 </script>
