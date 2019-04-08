@@ -1,24 +1,29 @@
 <template>
   <div class="home-wrap">
-    <head-area></head-area>
-    <card-area></card-area>
-    <foot-area></foot-area>
+    <div class="header-area">Dear {{ homeView.userName }}，good morning!</div>
+    <div class="card-area">
+      <cards v-for="(item, key) in cardsList" :key="key" :uiTplType="item.uiTplType"></cards>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import HeadArea from '../components/headArea.vue';
-import CardArea from '../components/cardArea.vue';
-import FootArea from '../components/footArea.vue';
+import Cards from "../components/cards.vue";
 
 import "./home.less";
 export default {
-  name: "home",
-  components: {
-    HeadArea,
-    CardArea,
-    FootArea,
+  created: function() {
+    this.$store.dispatch("homeStore/homeInit");
   },
-}
+  computed: {
+    ...mapState({
+      cardsList: state => state.homeStore.cardsList,
+      homeView: state => state.homeStore.homeView,
+    })
+  },
+  components: {
+    Cards
+  }
+};
 </script>

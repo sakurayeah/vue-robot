@@ -1,7 +1,8 @@
 import ajax from '../../common/ajax';
 
 const state = {
-  list: [],
+  cardsList: [],
+  homeView: {},
 }
 
 const getters = {};
@@ -15,8 +16,9 @@ const actions = {
 
 const mutations = {
   homeInit(state, res = {}) {
-    const { list = [] } = res;
-    state.list = list;
+    const { cardsList = [], homeView = {} } = res;
+    state.cardsList = cardsList;
+    state.homeView = homeView;
   }
 }
 

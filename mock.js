@@ -7,7 +7,15 @@ const {
 // 首页初始化接口
 const homeInit = {
   'succese': true,
-  cardsOrder: [
+  cardsList: [
+    {
+      uiTplType: 'TOOLS',
+      servCardId: 'CARD_HELPTOOLS',
+    },
+    {
+      uiTplType: 'RECOMMEND',
+      servCardId: 'CARD1480660608887',
+    },
     {
       uiTplType: "CONJECTURE",
       servCardId: "CARD_CONJECTURE",
@@ -39,43 +47,6 @@ const homeInit = {
     {
       uiTplType: "NEWMERCHANT",
       servCardId: "CARD_NEWMERCHANT",
-    },
-    {
-      uiTplType: 'HELPTOOLS',
-      cardContent: {
-        title: '快捷工具',
-        list: [
-          {
-            icon: 'https://gw.alipayobjects.com/zos/rmsportal/uTYGGrfQVehbQqGoXfeV.png',
-            listTitle: '敢收敢赔',
-            link: 'http://www.baidu.com',
-            "subTitle": "支招小窍门",
-            mediaId: 'mediaId',
-          },
-          {
-            icon: 'https://gw.alipayobjects.com/zos/rmsportal/JwBRPASuWCGxKvxvhgSV.png',
-            listTitle: '语音播报语音播报语音播报',
-            link: 'http://www.baidu.com',
-            mediaId: 'mediaId',
-          },
-          {
-            icon: 'https://gw.alipayobjects.com/zos/rmsportal/ckFNRvddekqSgYVyJwbF.png',
-            listTitle: '开通花呗收款',
-            link: 'http://www.baidu.com',
-            mediaId: 'mediaId',
-          },
-        ],
-      },
-      servCardId: 'CARD_HELPTOOLS',
-    },
-    {
-      uiTplType: 'RECOMMEND',
-      cardContent: {
-        btMessage: '热门问题',
-        gzMessage: '换一换1',
-        pageSize: 3
-      },
-      servCardId: 'CARD1480660608887',
     },
     {
       uiTplType: "ENCYCLOPEDIA",
@@ -283,6 +254,7 @@ const homeInit = {
     },
   ],
   homeView: {
+    "userName": "Bakri",
     "topBgLink": "https://gw.alipayobjects.com/zos/rmsportal/PCMfMnDxuRIiRjDMSDHL.png",
     "indexttips": "但发生的",
     "indexgreetings": "Hi，null",
@@ -341,16 +313,62 @@ const recommend = {
     }
   ],
   headline: 'recommend',
-  "stat": "ok"
+  'succese': true,
 }
 
-Mock.setup({
-  timeout: '100-500'
-})
+// tools
+const toos = {
+  succese: true,
+  headline: "toos",
+  list: [
+    {
+      id: '1',
+      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_5-%E4%BF%A1%E6%81%AF%20(1).png',
+      title: '信息',
+      link: 'http://www.baidu.com',
+    },
+    {
+      id: '2',
+      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_4-%E8%AE%BE%E7%BD%AE.png',
+      title: '设置',
+      link: 'http://www.baidu.com',
+    },
+    {
+      id: '3',
+      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_8-%E6%88%91%E7%9A%84.png',
+      title: '我的',
+      link: 'http://www.baidu.com',
+    },
+    {
+      id: '4',
+      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_16-%E7%A4%BC%E7%89%A9%20(1).png',
+      title: '礼物',
+      link: 'http://www.baidu.com',
+    },
+    {
+      id: '5',
+      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_25-%E5%AE%A2%E6%9C%8D%20(1).png',
+      title: '客服',
+      link: 'http://www.baidu.com',
+    },
+    {
+      id: '6',
+      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_31-%E5%BA%97%E9%93%BA.png',
+      title: '店铺',
+      link: 'http://www.baidu.com',
+    },
+  ],
+}
+
+// Mock.setup({
+//   timeout: '100-500'
+// })
 
 // 首页初始化接口
 Mock.mock('homeInit.json', 'get', homeInit)
 // 卡片：recommend
 Mock.mock('recommend.json', 'get', recommend)
+// 卡片：tools
+Mock.mock('tools.json', 'get', toos)
 // 聊天页问答接口
 Mock.mock('chat.json', 'get', chatPort)
