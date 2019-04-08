@@ -1,15 +1,11 @@
 <template>
-  <div>
-    footer
-  </div>
+  <div>footer</div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
-  methods: {
-  },
-  computed: {
-  }
+  methods: {},
+  computed: {}
 };
 </script>
