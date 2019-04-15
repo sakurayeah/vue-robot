@@ -1,4 +1,6 @@
 const Mock = require('mockjs');
+var Random = Mock.Random;
+
 const {
   parse
 } = require('url');
@@ -254,7 +256,9 @@ const homeInit = {
     },
   ],
   homeView: {
-    "userName": "Bakri",
+    "userName": Random.first(),
+    "banner": Random.image('1000x130', '#ADD8E6', '#FFF', 'banner'),
+    "avatar": Random.image('100x100', '#7B68EE', '#FFF', 'avatar'),
     "topBgLink": "https://gw.alipayobjects.com/zos/rmsportal/PCMfMnDxuRIiRjDMSDHL.png",
     "indexttips": "但发生的",
     "indexgreetings": "Hi，null",
@@ -263,7 +267,6 @@ const homeInit = {
     "indextopnotice": "但发生的饭",
     "pagetitle": "你猜",
     "indextoplink": "房东夫妇",
-    viewType: "newPlatform",
     "robotportrait": "http://imgbbs.heiguang.net/forum/201406/28/102652gu4x3nfz4r3s4rm4.jpg",
     "announcement": "公告文本是什么鬼",
     "appointmentlink": "https://www.baidu.com/",
@@ -295,21 +298,81 @@ const homeInit = {
 // 聊天页问答接口
 const chatPort = (opts) => {
   const { body } = opts;
+
+  let answer = {
+    content: Random.sentence(),
+  }
+
+  switch (body) {
+    case '1':
+      answer = {
+        content: Random.sentence(),
+        'btns|1-5': [
+          Random.word(3, 8)
+        ],
+      }
+      break;
+    case '2':
+      answer = {
+        content: Random.sentence(),
+        'recommends|1-3': [
+          Random.sentence(1, 3)
+        ],
+      }
+      break;
+    case '3':
+      answer = {
+        content: Random.sentence(3, 5),
+        'goods|1-8': [
+          {
+            title: Random.word(3, 8),
+            icon: Random.image('100x100', '#ADD8E6'),
+            link: 'http://www.baidu.com',
+          }
+        ],
+      }
+      break;
+    case '4':
+      answer = {
+        content: Random.sentence(3, 5),
+        'bills|1-3': [
+          {
+            title: Random.sentence(1, 3),
+            icon: Random.image('100x100', '#ADD8E6'),
+            date: `${Random.date('yyyy-MM-dd')} ${Random.time()}`,
+            'cost|1-1000.2': 1,
+            link: 'http://www.baidu.com'
+          }
+        ],
+      }
+      break;
+    default:
+      break;
+  }
+
   return Mock.mock({
     'succese': true,
-    'answer': body
+    ...answer,
   })
+}
+
+// 聊天页初始化
+const chatInit = {
+  chartView: {
+    welcome: Random.sentence(3, 6),
+  },
+  succese: true,
 }
 
 
 // recommend
 const recommend = {
   "pageSize": 6,
-  // list: [],
   'list|3-15': [
     {
       'id|+1': 1,
       'title': '@title(2, 4)',
+      'link': 'http://www.baidu.com',
     }
   ],
   headline: 'recommend',
@@ -319,45 +382,15 @@ const recommend = {
 // tools
 const toos = {
   succese: true,
-  headline: "toos",
-  list: [
+  headline: "tools",
+  'list|6-10': [
     {
-      id: '1',
-      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_5-%E4%BF%A1%E6%81%AF%20(1).png',
-      title: '信息',
-      link: 'http://www.baidu.com',
-    },
-    {
-      id: '2',
-      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_4-%E8%AE%BE%E7%BD%AE.png',
-      title: '设置',
-      link: 'http://www.baidu.com',
-    },
-    {
-      id: '3',
-      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_8-%E6%88%91%E7%9A%84.png',
-      title: '我的',
-      link: 'http://www.baidu.com',
-    },
-    {
-      id: '4',
-      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_16-%E7%A4%BC%E7%89%A9%20(1).png',
-      title: '礼物',
-      link: 'http://www.baidu.com',
-    },
-    {
-      id: '5',
-      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_25-%E5%AE%A2%E6%9C%8D%20(1).png',
-      title: '客服',
-      link: 'http://www.baidu.com',
-    },
-    {
-      id: '6',
-      icon: 'http://images.cnblogs.com/cnblogs_com/sakurayeah/1133161/o_31-%E5%BA%97%E9%93%BA.png',
-      title: '店铺',
-      link: 'http://www.baidu.com',
-    },
-  ],
+      'id|+1': 1,
+      'title': '@word(3, 5)',
+      'link': 'http://www.baidu.com',
+      'icon': Random.image('100x100', '#14b9c7'),
+    }
+  ]
 }
 
 // Mock.setup({
@@ -370,5 +403,7 @@ Mock.mock('homeInit.json', 'get', homeInit)
 Mock.mock('recommend.json', 'get', recommend)
 // 卡片：tools
 Mock.mock('tools.json', 'get', toos)
+// 聊天页初始化
+Mock.mock('chatInit.json', 'get', chatInit);
 // 聊天页问答接口
 Mock.mock('chat.json', 'get', chatPort)

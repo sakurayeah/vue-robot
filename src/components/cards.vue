@@ -12,6 +12,8 @@ export default {
         return createElement(Recommend)
       case 'TOOLS':
        return createElement(Tools)
+      default:
+       return null;
     }
   },
 };
