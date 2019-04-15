@@ -1,4 +1,6 @@
 const Mock = require('mockjs');
+var Random = Mock.Random;
+
 const {
   parse
 } = require('url');
@@ -7,7 +9,15 @@ const {
 // 首页初始化接口
 const homeInit = {
   'succese': true,
-  cardsOrder: [
+  cardsList: [
+    {
+      uiTplType: 'TOOLS',
+      servCardId: 'CARD_HELPTOOLS',
+    },
+    {
+      uiTplType: 'RECOMMEND',
+      servCardId: 'CARD1480660608887',
+    },
     {
       uiTplType: "CONJECTURE",
       servCardId: "CARD_CONJECTURE",
@@ -39,43 +49,6 @@ const homeInit = {
     {
       uiTplType: "NEWMERCHANT",
       servCardId: "CARD_NEWMERCHANT",
-    },
-    {
-      uiTplType: 'HELPTOOLS',
-      cardContent: {
-        title: '快捷工具',
-        list: [
-          {
-            icon: 'https://gw.alipayobjects.com/zos/rmsportal/uTYGGrfQVehbQqGoXfeV.png',
-            listTitle: '敢收敢赔',
-            link: 'http://www.baidu.com',
-            "subTitle": "支招小窍门",
-            mediaId: 'mediaId',
-          },
-          {
-            icon: 'https://gw.alipayobjects.com/zos/rmsportal/JwBRPASuWCGxKvxvhgSV.png',
-            listTitle: '语音播报语音播报语音播报',
-            link: 'http://www.baidu.com',
-            mediaId: 'mediaId',
-          },
-          {
-            icon: 'https://gw.alipayobjects.com/zos/rmsportal/ckFNRvddekqSgYVyJwbF.png',
-            listTitle: '开通花呗收款',
-            link: 'http://www.baidu.com',
-            mediaId: 'mediaId',
-          },
-        ],
-      },
-      servCardId: 'CARD_HELPTOOLS',
-    },
-    {
-      uiTplType: 'RECOMMEND',
-      cardContent: {
-        btMessage: '热门问题',
-        gzMessage: '换一换1',
-        pageSize: 3
-      },
-      servCardId: 'CARD1480660608887',
     },
     {
       uiTplType: "ENCYCLOPEDIA",
@@ -283,6 +256,9 @@ const homeInit = {
     },
   ],
   homeView: {
+    "userName": Random.first(),
+    "banner": Random.image('1000x130', '#ADD8E6', '#FFF', 'banner'),
+    "avatar": Random.image('100x100', '#7B68EE', '#FFF', 'avatar'),
     "topBgLink": "https://gw.alipayobjects.com/zos/rmsportal/PCMfMnDxuRIiRjDMSDHL.png",
     "indexttips": "但发生的",
     "indexgreetings": "Hi，null",
@@ -291,7 +267,6 @@ const homeInit = {
     "indextopnotice": "但发生的饭",
     "pagetitle": "你猜",
     "indextoplink": "房东夫妇",
-    viewType: "newPlatform",
     "robotportrait": "http://imgbbs.heiguang.net/forum/201406/28/102652gu4x3nfz4r3s4rm4.jpg",
     "announcement": "公告文本是什么鬼",
     "appointmentlink": "https://www.baidu.com/",
@@ -323,25 +298,99 @@ const homeInit = {
 // 聊天页问答接口
 const chatPort = (opts) => {
   const { body } = opts;
+
+  let answer = {
+    content: Random.sentence(),
+  }
+
+  switch (body) {
+    case '1':
+      answer = {
+        content: Random.sentence(),
+        'btns|1-5': [
+          Random.word(3, 8)
+        ],
+      }
+      break;
+    case '2':
+      answer = {
+        content: Random.sentence(),
+        'recommends|1-3': [
+          Random.sentence(1, 3)
+        ],
+      }
+      break;
+    case '3':
+      answer = {
+        content: Random.sentence(3, 5),
+        'goods|1-8': [
+          {
+            title: Random.word(3, 8),
+            icon: Random.image('100x100', '#ADD8E6'),
+            link: 'http://www.baidu.com',
+          }
+        ],
+      }
+      break;
+    case '4':
+      answer = {
+        content: Random.sentence(3, 5),
+        'bills|1-3': [
+          {
+            title: Random.sentence(1, 3),
+            icon: Random.image('100x100', '#ADD8E6'),
+            date: `${Random.date('yyyy-MM-dd')} ${Random.time()}`,
+            'cost|1-1000.2': 1,
+            link: 'http://www.baidu.com'
+          }
+        ],
+      }
+      break;
+    default:
+      break;
+  }
+
   return Mock.mock({
     'succese': true,
-    'answer': body
+    ...answer,
   })
+}
+
+// 聊天页初始化
+const chatInit = {
+  chartView: {
+    welcome: Random.sentence(3, 6),
+  },
+  succese: true,
 }
 
 
 // recommend
 const recommend = {
   "pageSize": 6,
-  // list: [],
   'list|3-15': [
     {
       'id|+1': 1,
       'title': '@title(2, 4)',
+      'link': 'http://www.baidu.com',
     }
   ],
   headline: 'recommend',
-  "stat": "ok"
+  'succese': true,
+}
+
+// tools
+const toos = {
+  succese: true,
+  headline: "tools",
+  'list|6-10': [
+    {
+      'id|+1': 1,
+      'title': '@word(3, 5)',
+      'link': 'http://www.baidu.com',
+      'icon': Random.image('100x100', '#14b9c7'),
+    }
+  ]
 }
 const strategy = {
   title: '商家攻略',
@@ -390,14 +439,18 @@ const strategy = {
   ],
 }
 
-Mock.setup({
-  timeout: '100-500'
-})
+// Mock.setup({
+//   timeout: '100-500'
+// })
 
 // 首页初始化接口
 Mock.mock('homeInit.json', 'get', homeInit)
 // 卡片：recommend
 Mock.mock('recommend.json', 'get', recommend)
+// 卡片：tools
+Mock.mock('tools.json', 'get', toos)
+// 聊天页初始化
+Mock.mock('chatInit.json', 'get', chatInit);
 // 聊天页问答接口
 Mock.mock('chat.json', 'get', chatPort)
 // 攻略卡片

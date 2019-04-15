@@ -7,7 +7,9 @@
       :btn="list.length > 6 && 'change'"
       @btnClick="changePage"
     ></card-title>
-    <div class="list" v-for="item in listGroup" :key="item.id">{{ item.title }}</div>
+    <div class="list" v-for="item in listGroup" :key="item.id">
+      <a :href="item.link">{{ item.title }}</a>
+    </div>
   </div>
 </template>
 
@@ -15,7 +17,6 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 import CardTitle from "./cardTitle.vue";
 import Loading from "./loading.vue";
-import "./recommend.less";
 
 export default {
   data() {
@@ -57,3 +58,14 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+.recommend-wrap {
+  .list {
+    border-bottom: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
+    color: #333;
+  }
+}
+</style>
