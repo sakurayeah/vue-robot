@@ -2,7 +2,7 @@ import ajax from '../../common/ajax';
 import recommend from './recommend';
 
 const state = {
-  title: '',
+  headline: '',
   list: [],
   loading: true,
 }
@@ -21,7 +21,7 @@ const actions = {
 }
 const mutations = {
   strategy(state, res = {}) {
-    state.title = res.title;
+    state.headline = res.headline;
     state.list = res.list;
     state.loading = false;
   },

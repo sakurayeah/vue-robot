@@ -1,5 +1,5 @@
 <template>
-  <div class="card-head">
+  <div v-if="headline" class="card-head">
     <span>{{ headline }}</span>
     <span @click="$emit('btnClick')" v-show="btn">{{ btn }}</span>
   </div>

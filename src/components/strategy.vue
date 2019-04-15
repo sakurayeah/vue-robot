@@ -1,24 +1,18 @@
 <template>
-  <div class="strategy-wrap">
-    <div v-if="title">
-      <card-title :headline="title"></card-title>
+  <loading v-if="loading"></loading>
+  <div v-else-if="list.length > 0" class="strategy-wrap">
+    <card-title :headline="headline"></card-title>
+    <div class="tabs-nav">
+      <div
+        class="tab"
+        v-for="(item,index) in list"
+        :key="index"
+        v-bind:class="{active:index==current}"
+        @click="switchShow(index, $event)"
+      >{{item.title}}<b></b></div>
     </div>
-    <div v-if="loading">
-      <loading></loading>
-    </div>
-    <div v-if="list.length">
-      <div class="title">
-        <div
-          class="title-item"
-          v-for="(item,index) in list"
-          :key="index"
-          v-bind:class="{active:index==current}"
-          @click="switchShow(index, $event)"
-        >{{item.listTitle}}</div>
-      </div>
-      <div v-if="newState.length">
-        <div class="list" v-for="(item,index) in newState" :key="index">{{item.listTitle}}</div>
-      </div>
+    <div v-if="newState.length">
+      <div class="list" v-for="(cItem,index) in newState" :key="index">{{cItem.subTitle}}</div>
     </div>
   </div>
 </template>
@@ -26,7 +20,7 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import CardTitle from "./cardTitle.vue";
 import Loading from "./loading.vue";
-import "./strategy.less";
+
 export default {
   data() {
     return {
@@ -47,7 +41,7 @@ export default {
   computed: {
     ...mapState({
       list: state => state.strategyStore.list,
-      title: state => state.strategyStore.title,
+      headline: state => state.strategyStore.headline,
       loading: state => state.strategyStore.loading
     }),
     newState() {
@@ -65,3 +59,45 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+.strategy-wrap {
+  .tabs-nav {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 1px dashed #ddd;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab {
+      position: relative;
+      padding: 10px;
+      font-size: 18px;
+      width: fit-content;
+      white-space: nowrap;
+      &>b {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        display: block;
+        width: 100%;
+        height: 2px;
+      }
+    }
+  }
+  .list {
+    border-bottom: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
+  }
+  .active {
+    color: #14b9c7;
+    &>b {
+      background: #14b9c7;
+    }
+  }
+}
+</style>

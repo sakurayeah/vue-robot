@@ -85,6 +85,10 @@ const homeInit = {
       servCardId: 'CARD1480660608887',
     },
     {
+      uiTplType: 'STRATEGY',
+      servCardId: 'CARD_STRATEGY',
+    },
+    {
       uiTplType: 'ACTIVITYRIGHT',
       cardContent: {
         title: '活动权益',
@@ -110,46 +114,6 @@ const homeInit = {
         ],
       },
       servCardId: 'CARD1480498991447',
-    },
-    {
-      uiTplType: 'STRATEGY',
-      cardContent: {
-        title: '商家攻略',
-        list: [
-          {
-            icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-            link: 'http://www.baidu.com',
-            listTitle: '收入账单',
-            subTitle: '一目了然查看',
-            mediaId: 'mediaId1'
-          }, {
-            icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-            link: 'http://www.baidu.com',
-            listTitle: '收入账单',
-            subTitle: '一目了然查看',
-            mediaId: 'mediaId2'
-          }, {
-            icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-            link: 'http://www.baidu.com',
-            listTitle: '收入账单',
-            subTitle: '一目了然查看',
-            mediaId: 'mediaId3'
-          }, {
-            icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-            link: 'http://www.baidu.com',
-            listTitle: '收入账单',
-            subTitle: '一目了然查看',
-            mediaId: 'mediaId4'
-          }, {
-            icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-            link: 'http://www.baidu.com',
-            listTitle: '收入账单',
-            subTitle: '一目了然查看',
-            mediaId: 'mediaId5'
-          },
-        ],
-      },
-      servCardId: 'CARD_STRATEGY',
     },
     {
       uiTplType: 'SELECTINFO',
@@ -259,24 +223,10 @@ const homeInit = {
     "userName": Random.first(),
     "banner": Random.image('1000x130', '#ADD8E6', '#FFF', 'banner'),
     "avatar": Random.image('100x100', '#7B68EE', '#FFF', 'avatar'),
-    "topBgLink": "https://gw.alipayobjects.com/zos/rmsportal/PCMfMnDxuRIiRjDMSDHL.png",
-    "indexttips": "但发生的",
-    "indexgreetings": "Hi，null",
-    "viewcolor": "#108ee9",
-    "welcomenightnotice": "晚上好,&lt;br&gt;0-8点是自助服务时间",
-    "indextopnotice": "但发生的饭",
     "pagetitle": "你猜",
-    "indextoplink": "房东夫妇",
     "robotportrait": "http://imgbbs.heiguang.net/forum/201406/28/102652gu4x3nfz4r3s4rm4.jpg",
-    "announcement": "公告文本是什么鬼",
-    "appointmentlink": "https://www.baidu.com/",
-    "guideclivetext": "test1112222亲，可在下方输入框联系人工哦！",
-    "connclivetext": "正在为您匹配人工服务1",
-    "connCliveText": "正在为您匹配人工服务1",
-    "specialcard": "CARD1540198541384",
     "cliverphoto": "https://zos.alipayobjects.com/rmsportal/zVBCcOVAtHFuRJJ.png",
     "userdefaultphoto": "https://tfsimg.alipay.com/images/partner/T1bKRtXoFaXXXXXXXX",
-    "phonextopimg": "https://gw.alipayobjects.com/zos/rmsportal/bHLsANPaCqonOSrWXLRF.jpeg",
     "serviceHotline": {
       "serviceText": "热线服务",
       "btnLink": "https://www.baidu.com/"
@@ -386,56 +336,27 @@ const toos = {
   'list|6-10': [
     {
       'id|+1': 1,
-      'title': '@word(3, 5)',
+      title: '@word(3, 5)',
       'link': 'http://www.baidu.com',
       'icon': Random.image('100x100', '#14b9c7'),
     }
   ]
 }
 const strategy = {
-  title: '商家攻略',
-  list: [{
-    listTitle: '省钱小攻略',
-    question: [
-      {
-        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-        link: 'http://www.baidu.com',
-        listTitle: '省钱账单查看',
-        subTitle: '一目了然查看',
-        mediaId: 'mediaId1'
-      }, {
-        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-        link: 'http://www.baidu.com',
-        listTitle: '省钱小技巧',
-        subTitle: '一目了然查看',
-        mediaId: 'mediaId1'
-      }, {
-        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-        link: 'http://www.baidu.com',
-        listTitle: '省钱的一些方法',
-        subTitle: '一目了然查看',
-        mediaId: 'mediaId1'
-      },
-    ]
-  },
-  {
-    listTitle: '积分小攻略',
-    question: [
-      {
-        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-        link: 'http://www.baidu.com',
-        listTitle: '积分怎么增加',
-        subTitle: '一目了然查看',
-        mediaId: 'mediaId1'
-      }, {
-        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-        link: 'http://www.baidu.com',
-        listTitle: '积分值的了解',
-        subTitle: '一目了然查看',
-        mediaId: 'mediaId1'
-      },
-    ]
-  }
+  headline: 'strategy',
+  succese: true,
+  'list|2-5': [
+    {
+      title: '@title(1, 2)',
+      'question|3-6': [
+        {
+          icon: Random.image('100x100', '#14b9c7'),
+          link: 'http://www.baidu.com',
+          subTitle: '@title(2, 4)',
+          desc: 'Random.sentence(2, 5)',
+        }
+      ]
+    }
   ],
 }
 
