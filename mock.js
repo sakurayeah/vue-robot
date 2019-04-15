@@ -105,7 +105,7 @@ const homeInit = {
             link: 'http://www.baidu.com',
             linkTitle: '查看更多',
             icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
-            mediaId: 'mediaId1'
+            mediaId: 'mediaId2'
           },
         ],
       },
@@ -127,25 +127,25 @@ const homeInit = {
             link: 'http://www.baidu.com',
             listTitle: '收入账单',
             subTitle: '一目了然查看',
-            mediaId: 'mediaId1'
+            mediaId: 'mediaId2'
           }, {
             icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
             link: 'http://www.baidu.com',
             listTitle: '收入账单',
             subTitle: '一目了然查看',
-            mediaId: 'mediaId1'
+            mediaId: 'mediaId3'
           }, {
             icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
             link: 'http://www.baidu.com',
             listTitle: '收入账单',
             subTitle: '一目了然查看',
-            mediaId: 'mediaId1'
+            mediaId: 'mediaId4'
           }, {
             icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
             link: 'http://www.baidu.com',
             listTitle: '收入账单',
             subTitle: '一目了然查看',
-            mediaId: 'mediaId1'
+            mediaId: 'mediaId5'
           },
         ],
       },
@@ -392,6 +392,52 @@ const toos = {
     }
   ]
 }
+const strategy = {
+  title: '商家攻略',
+  list: [{
+    listTitle: '省钱小攻略',
+    question: [
+      {
+        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
+        link: 'http://www.baidu.com',
+        listTitle: '省钱账单查看',
+        subTitle: '一目了然查看',
+        mediaId: 'mediaId1'
+      }, {
+        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
+        link: 'http://www.baidu.com',
+        listTitle: '省钱小技巧',
+        subTitle: '一目了然查看',
+        mediaId: 'mediaId1'
+      }, {
+        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
+        link: 'http://www.baidu.com',
+        listTitle: '省钱的一些方法',
+        subTitle: '一目了然查看',
+        mediaId: 'mediaId1'
+      },
+    ]
+  },
+  {
+    listTitle: '积分小攻略',
+    question: [
+      {
+        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
+        link: 'http://www.baidu.com',
+        listTitle: '积分怎么增加',
+        subTitle: '一目了然查看',
+        mediaId: 'mediaId1'
+      }, {
+        icon: 'https://os.alipayobjects.com/rmsportal/UFNomcPpCDZonFm.jpg',
+        link: 'http://www.baidu.com',
+        listTitle: '积分值的了解',
+        subTitle: '一目了然查看',
+        mediaId: 'mediaId1'
+      },
+    ]
+  }
+  ],
+}
 
 // Mock.setup({
 //   timeout: '100-500'
@@ -407,3 +453,5 @@ Mock.mock('tools.json', 'get', toos)
 Mock.mock('chatInit.json', 'get', chatInit);
 // 聊天页问答接口
 Mock.mock('chat.json', 'get', chatPort)
+// 攻略卡片
+Mock.mock('strategy.json', 'get', strategy)

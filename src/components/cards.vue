@@ -2,6 +2,7 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 import Recommend from "./recommend.vue";
 import Tools from "./tools.vue";
+import Strategy from "./strategy.vue";
 
 export default {
   functional: true,
@@ -12,6 +13,8 @@ export default {
         return createElement(Recommend)
       case 'TOOLS':
        return createElement(Tools)
+      case 'STRATEGY':
+        return createElement(Strategy)
       default:
        return null;
     }
